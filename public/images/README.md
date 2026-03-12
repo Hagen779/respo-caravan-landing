@@ -9,7 +9,8 @@ Optional assets for a pixel-perfect match with the original design. The app work
 | `hero-trailer.png` | Optional first hero slider image (replace first Unsplash slide) |
 | `trailer-wide.png` | Camper Wide card image |
 | `trailer-offroad.png` | Camper Off-Road card image |
-| `config-bg.png` | Configurations section background |
+| `config-bg.png` | Configurations section background (legacy) |
+| `config-section-bg.jpg` | Choose Configuration section background (trailer in nature; use this for the expressive background with ~12% visibility) |
 | `logo-vertical.png` | Footer logo |
 
 Export from your Figma file or copy from the React project’s build output. External images (e.g. Unsplash) are loaded from URLs in the components.

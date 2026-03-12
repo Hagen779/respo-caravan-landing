@@ -59,9 +59,9 @@ export function Configurations({
   return (
     <section
       id="configurations"
-      className="py-12 px-4 relative overflow-hidden bg-gray-100"
+      className="py-12 px-4 relative overflow-hidden"
       style={{
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(/images/config-bg.png)`,
+        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url(/images/config-section-bg.jpg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
