@@ -94,11 +94,12 @@ export function Configurations({
                 <Card
                   hoverable
                   className={`h-full relative transition-all duration-300 ${
-                    selectedConfig === config.type ? 'ring-4 shadow-2xl' : 'hover:shadow-xl'
+                    selectedConfig === config.type
+                      ? 'ring-4 ring-[#FF5A2F] shadow-2xl'
+                      : 'hover:shadow-xl'
                   }`}
                   style={{
                     borderColor: selectedConfig === config.type ? '#FF5A2F' : '#e5e7eb',
-                    ringColor: selectedConfig === config.type ? '#FF5A2F' : 'transparent',
                   }}
                   cover={
                     <div className="relative overflow-hidden h-64 bg-gray-100">
