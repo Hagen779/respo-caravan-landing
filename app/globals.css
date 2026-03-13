@@ -1,26 +1,63 @@
+@import "./fonts.css";
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+  --font-heading: 'Berthold Akzidenz Grotesk', 'Akzidenz-Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --respo-orange: #FF5A2F;
+  --respo-black: #000000;
+  --respo-white: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-respo-orange: var(--respo-orange);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF5A2F;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E54925;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+}
+
+.ant-btn-primary {
+  box-shadow: 0 4px 12px rgba(255, 90, 47, 0.3);
+}
+
+.ant-btn-primary:hover {
+  box-shadow: 0 6px 16px rgba(255, 90, 47, 0.4);
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #FF5A2F !important;
+  border-color: #FF5A2F !important;
+}
+
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-checkbox:hover .ant-checkbox-inner {
+  border-color: #FF5A2F !important;
 }
