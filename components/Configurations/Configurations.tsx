@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Card, Row, Col, Button } from 'antd';
 import { CheckOutlined, StarOutlined } from '@ant-design/icons';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -57,16 +58,19 @@ export function Configurations({
   ];
 
   return (
-    <section
-      id="configurations"
-      className="py-12 px-4 relative overflow-hidden"
-      style={{
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url(/images/config-section-bg.jpg)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-      }}
-    >
+    <section id="configurations" className="py-12 px-4 relative overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/config-section-bg.jpg"
+          alt=""
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+          quality={70}
+          priority={false}
+        />
+        <div className="absolute inset-0 bg-white/88" aria-hidden />
+      </div>
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -103,11 +107,13 @@ export function Configurations({
                   }}
                   cover={
                     <div className="relative overflow-hidden h-64 bg-gray-100">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         alt={config.name}
                         src={config.image}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                        fill
+                        className="object-cover transition-transform duration-500 hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        quality={75}
                       />
                       {config.popular && (
                         <div

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Button, Drawer } from 'antd';
 import { MenuOutlined, GlobalOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -76,17 +77,16 @@ export function Navbar() {
               />
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="flex items-center cursor-pointer"
+                className="flex items-center cursor-pointer relative h-8 md:h-10 w-auto"
                 onClick={() => scrollToSection('hero')}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src="/images/logo-vertical.png"
                   alt="Respo Logo"
-                  className="h-8 md:h-10 w-auto object-contain"
-                  style={{
-                    filter: isSticky ? 'none' : 'brightness(0) invert(1) md:brightness(100) md:invert(0)',
-                  }}
+                  width={120}
+                  height={40}
+                  className={`h-8 md:h-10 w-auto object-contain ${!isSticky ? 'invert brightness-0 md:invert-0 md:brightness-100' : ''}`}
+                  priority
                 />
               </motion.div>
             </div>
@@ -140,9 +140,14 @@ export function Navbar() {
 
       <Drawer
         title={
-          <div className="flex items-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/logo-horizontal.png" alt="Respo Logo" className="h-7 w-auto object-contain" />
+          <div className="flex items-center relative h-7 w-[140px]">
+            <Image
+              src="/images/logo-horizontal.png"
+              alt="Respo Logo"
+              width={140}
+              height={28}
+              className="object-contain object-left"
+            />
           </div>
         }
         placement="right"
