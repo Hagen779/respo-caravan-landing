@@ -1,9 +1,13 @@
 'use client';
 
+import Image from 'next/image';
 import { Button } from 'antd';
 import { RocketOutlined } from '@ant-design/icons';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'motion/react';
+
+const ctaBackgroundSrc =
+  'https://images.unsplash.com/photo-1760715142712-85521c19e587?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200';
 
 interface CTASectionProps {
   onCTAClick: () => void;
@@ -14,16 +18,19 @@ export function CTASection({ onCTAClick }: CTASectionProps) {
 
   return (
     <section className="relative py-20 px-4 overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1760715142712-85521c19e587?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080)',
-        }}
-      />
-      <div className="absolute inset-0 bg-black/70" />
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={ctaBackgroundSrc}
+          alt=""
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+          quality={75}
+        />
+      </div>
+      <div className="absolute inset-0 bg-black/70 z-[1]" />
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
+      <div className="relative z-[2] max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

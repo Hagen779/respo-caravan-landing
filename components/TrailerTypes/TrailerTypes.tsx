@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Card, Row, Col, Button } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -74,13 +75,16 @@ export function TrailerTypes({ selectedType, onSelectType }: TrailerTypesProps) 
                   styles={{ body: { padding: 0 } }}
                 >
                   <div className="relative bg-white flex items-center justify-center px-6" style={{ height: '240px', paddingTop: '24px', paddingBottom: '24px' }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      alt={trailer.name}
-                      src={trailer.image}
-                      className="max-w-full max-h-full object-contain"
-                      style={{ maxHeight: '200px' }}
-                    />
+                    <div className="relative w-full h-[200px]">
+                      <Image
+                        alt={trailer.name}
+                        src={trailer.image}
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        quality={80}
+                      />
+                    </div>
                   </div>
                   <div className="px-6 pb-6 pt-4">
                     <h3 className="text-2xl font-bold mb-4 text-center" style={{ color: '#000000' }}>

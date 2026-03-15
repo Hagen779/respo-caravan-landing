@@ -13,4 +13,4 @@ Optional assets for a pixel-perfect match with the original design. The app work
 | `config-section-bg.jpg` | Choose Configuration section background (trailer in nature; use this for the expressive background with ~12% visibility) |
 | `logo-vertical.png` | Footer logo |
 
-Export from your Figma file or copy from the React project’s build output. External images (e.g. Unsplash) are loaded from URLs in the components.
+Export from your Figma file or copy from the React project’s build output. External images (e.g. Unsplash) are loaded from URLs in the components. All images use Next.js `next/image` (WebP/AVIF, responsive sizes, lazy loading). Keep source assets under ~2 MB and ~1920px width when possible.

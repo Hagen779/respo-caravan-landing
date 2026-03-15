@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Row, Col } from 'antd';
 import {
   FacebookOutlined,
@@ -19,9 +20,14 @@ export function Footer() {
       <div className="max-w-6xl mx-auto">
         <Row gutter={[32, 32]}>
           <Col xs={24} md={8}>
-            <div className="mb-4">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/respo-logo.png" alt="Respo Caravan Logo" className="h-20 w-auto object-contain" />
+            <div className="mb-4 relative h-20 w-40">
+              <Image
+                src="/images/respo-logo.png"
+                alt="Respo Caravan Logo"
+                width={160}
+                height={80}
+                className="object-contain object-left"
+              />
             </div>
             <p className="text-gray-400 text-sm mb-4">
               Compact camping trailers for those who value freedom, comfort, and modern design.

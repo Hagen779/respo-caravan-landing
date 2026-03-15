@@ -1,17 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Button } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion, AnimatePresence } from 'motion/react';
 
 const heroImages = [
-  'https://images.unsplash.com/photo-1736709103713-0a9d0da445f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
-  'https://images.unsplash.com/photo-1646256815071-e8e80c6abae0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
-  'https://images.unsplash.com/photo-1771085167612-0f86394352ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
-  'https://images.unsplash.com/photo-1664132659621-4946784ccff5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
-  'https://images.unsplash.com/photo-1597078787820-b88375e0cd36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+  { src: 'https://images.unsplash.com/photo-1736709103713-0a9d0da445f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200', alt: 'Camping trailer in nature' },
+  { src: 'https://images.unsplash.com/photo-1646256815071-e8e80c6abae0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200', alt: 'Camper van landscape' },
+  { src: 'https://images.unsplash.com/photo-1771085167612-0f86394352ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200', alt: 'Caravan travel' },
+  { src: 'https://images.unsplash.com/photo-1664132659621-4946784ccff5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200', alt: 'Camping trailer' },
+  { src: 'https://images.unsplash.com/photo-1597078787820-b88375e0cd36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200', alt: 'Outdoor caravan' },
 ];
 
 interface HeroProps {
@@ -29,6 +30,8 @@ export function Hero({ onCTAClick }: HeroProps) {
     return () => clearInterval(timer);
   }, []);
 
+  const currentImage = heroImages[currentSlide];
+
   return (
     <section id="hero" className="relative h-screen w-full overflow-hidden">
       <AnimatePresence mode="wait">
@@ -40,9 +43,14 @@ export function Hero({ onCTAClick }: HeroProps) {
           transition={{ duration: 1.5 }}
           className="absolute inset-0"
         >
-          <div
-            className="w-full h-full bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroImages[currentSlide]})` }}
+          <Image
+            src={currentImage.src}
+            alt={currentImage.alt}
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+            quality={75}
           />
           <div className="absolute inset-0 bg-black/50" />
         </motion.div>
