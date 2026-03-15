@@ -8,18 +8,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'motion/react';
 
 export function Navbar() {
-  const [mounted, setMounted] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
     const handleScroll = () => {
       setIsSticky(window.scrollY > 100);
       const sections = ['hero', 'types', 'configurations', 'specs', 'advantages', 'calculator'];
@@ -34,10 +28,9 @@ export function Navbar() {
         }
       }
     };
-    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [mounted]);
+  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -56,35 +49,31 @@ export function Navbar() {
     { key: 'calculator', label: t('nav.options') },
   ];
 
-  // Use sticky styles only after mount so server and first client render match (avoids hydration mismatch)
-  const effectiveSticky = mounted && isSticky;
-
   return (
     <>
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-          effectiveSticky
+          isSticky
             ? 'bg-black/95 backdrop-blur-md shadow-lg'
             : 'bg-white md:bg-transparent shadow-md md:shadow-none'
         }`}
-        suppressHydrationWarning
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             <div className="flex items-center space-x-2 md:space-x-4">
               <Button
                 type="text"
-                icon={<ArrowLeftOutlined className={effectiveSticky ? 'text-white' : 'text-black md:text-white'} />}
-                className={`${effectiveSticky ? 'text-white' : 'text-black md:text-white'} hover:text-[#FF5A2F] transition-colors hidden sm:flex items-center`}
-                style={effectiveSticky ? { color: 'white' } : undefined}
+                icon={<ArrowLeftOutlined className={isSticky ? 'text-white' : 'text-black md:text-white'} />}
+                className={`${isSticky ? 'text-white' : 'text-black md:text-white'} hover:text-[#FF5A2F] transition-colors hidden sm:flex items-center`}
+                style={isSticky ? { color: 'white' } : undefined}
                 onClick={() => (window.location.href = '/')}
               >
-                <span className="ml-2 text-sm md:text-base" style={effectiveSticky ? { color: 'white' } : undefined}>Respo Trailers</span>
+                <span className="ml-2 text-sm md:text-base" style={isSticky ? { color: 'white' } : undefined}>Respo Trailers</span>
               </Button>
               <div
-                className={`h-6 md:h-8 w-px ${effectiveSticky ? 'bg-white/30' : 'bg-gray-300 md:bg-white/30'} hidden sm:block`}
+                className={`h-6 md:h-8 w-px ${isSticky ? 'bg-white/30' : 'bg-gray-300 md:bg-white/30'} hidden sm:block`}
               />
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -96,7 +85,7 @@ export function Navbar() {
                   alt="Respo Logo"
                   width={120}
                   height={40}
-                  className={`h-8 md:h-10 w-auto object-contain ${!effectiveSticky ? 'invert brightness-0 md:invert-0 md:brightness-100' : ''}`}
+                  className={`h-8 md:h-10 w-auto object-contain ${!isSticky ? 'invert brightness-0 md:invert-0 md:brightness-100' : ''}`}
                   priority
                 />
               </motion.div>
@@ -108,7 +97,7 @@ export function Navbar() {
                   key={item.key}
                   onClick={() => scrollToSection(item.key)}
                   className={`px-4 py-2 rounded-lg transition-all duration-200 ${
-                    activeSection === item.key ? 'text-white' : effectiveSticky ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+                    activeSection === item.key ? 'text-white' : isSticky ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
                   }`}
                   style={{ backgroundColor: activeSection === item.key ? '#FF5A2F' : 'transparent' }}
                 >
@@ -116,11 +105,11 @@ export function Navbar() {
                 </button>
               ))}
               <div className="ml-4 flex items-center space-x-2">
-                <GlobalOutlined className={`text-lg ${effectiveSticky ? 'text-white' : 'text-gray-700'}`} />
+                <GlobalOutlined className={`text-lg ${isSticky ? 'text-white' : 'text-gray-700'}`} />
                 <button
                   onClick={() => setLanguage('en')}
                   className={`px-3 py-1 rounded transition-colors ${
-                    language === 'en' ? 'bg-[#FF5A2F] text-white' : effectiveSticky ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+                    language === 'en' ? 'bg-[#FF5A2F] text-white' : isSticky ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
                   EN
@@ -128,7 +117,7 @@ export function Navbar() {
                 <button
                   onClick={() => setLanguage('ua')}
                   className={`px-3 py-1 rounded transition-colors ${
-                    language === 'ua' ? 'bg-[#FF5A2F] text-white' : effectiveSticky ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+                    language === 'ua' ? 'bg-[#FF5A2F] text-white' : isSticky ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
                   UA

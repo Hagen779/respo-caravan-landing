@@ -46,7 +46,7 @@ export function CTASection({ onCTAClick }: CTASectionProps) {
               onClick={onCTAClick}
               icon={<RocketOutlined />}
               iconPlacement="end"
-              className="h-14 px-10 text-lg font-semibold shadow-2xl hover:shadow-[#FF5A2F]/50 transition-all duration-300"
+              className="h-14 px-20 shadow-2xl hover:shadow-[#FF5A2F]/50 transition-all duration-300 font-semibold"
               style={{ backgroundColor: '#FF5A2F' }}
             >
               {t('cta.button')}
