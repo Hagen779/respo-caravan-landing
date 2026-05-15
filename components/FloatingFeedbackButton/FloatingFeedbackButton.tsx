@@ -25,7 +25,7 @@ export function FloatingFeedbackButton({ onClick }: FloatingFeedbackButtonProps)
           size="large"
           icon={<PhoneOutlined className="text-xl" />}
           onClick={onClick}
-          className="h-14 px-20 shadow-2xl hover:shadow-[#FF5A2F]/50 transition-all duration-300 font-semibold"
+          className="h-18 px-20 shadow-2xl hover:shadow-[#FF5A2F]/50 transition-all duration-300 font-semibold"
           style={{ backgroundColor: '#FF5A2F', border: 'none', borderRadius: '100px' }}
         >
           {t('feedback.callBack')}
